@@ -1,0 +1,9 @@
+#email config
+mail_from_addr=doc_sgl@163.com
+mail_from_pwd=123456
+mail_to_addr=sunguoli@meituan.com;
+
+#zhihu account
+my_zhihu_email=doc_sgl@163.com
+my_zhihu_password=123456
+my_zhihu_godness=hackersun
