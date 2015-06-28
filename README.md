@@ -16,9 +16,6 @@ this project is in coding...<br>
 <br>
 <br>
 <br>
-watch_goddess
-==
-watch_goddess.py是这个项目的简化版本。修改配置即可使用。
 <br>
 <br>
 
