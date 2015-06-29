@@ -8,7 +8,8 @@ import requests
 import re
 import time
 import datetime
-import json 
+import json
+import random
 
 # session对象,会自动保持cookies
 s = requests.session()
@@ -72,8 +73,10 @@ def get_a_user_all_followees(username):
         try:
             page = s.post(load_more_url, data=payload, headers=header_info, timeout=18)
         except:
-            # 响应时间过程过长则重试
-            print 'repost...'
+            #响应时间过长，可能被封锁了
+            t = random.randint(0,20)
+            print 'sleep ' + str(t) + '...'
+            time.sleep(t)
             page = s.post(load_more_url, data=payload, headers=header_info, timeout=60)
         
         # parse info.
@@ -127,7 +130,10 @@ def get_a_user_all_followers(username):
         try:
             page = s.post(load_more_url, data=payload, headers=header_info, timeout=18)
         except:
-            print 'repost...'
+            #响应时间过长，可能被封锁了
+            t = random.randint(0,20)
+            print 'sleep ' + str(t) + '...'
+            time.sleep(t)
             page = s.post(load_more_url, data=payload, headers=header_info, timeout=60)
         
         follower_id = re.findall('href=\\\\"\\\\/people\\\\/(.*?)\\\\', page.text.encode('utf-8'))
@@ -152,14 +158,44 @@ def append_to_file(filename, content):
         f.write(content.encode("UTF-8"))
     f.close()
 
+def get_a_user_all_followees_and_followers(username):
+    followee_list = get_a_user_all_followees(username)
+    follower_list = get_a_user_all_followers(username)
+    follow_list = [followee_list,follower_list]
+    return follow_list
+
+
+#bfs, get all user and their followees and followers
+def get_all_user_followees_and_followers(start_user):
+    user_list = []
+    user_follow_dict={}
+    if isinstance(start_user, str):
+        user_list.append(start_user)
+    elif isinstance(start_user, list):
+        user_list.extend(start_user)
+    
+    while len(user_list) > 0:
+        userid = user_list[0]
+        del user_list[0]
+        if userid in user_follow_dict:
+            continue
+
+        follower_list = get_a_user_all_followees_and_followers(userid)
+        user_follow_dict[userid] = follower_list
+
+        file_content = str(follower_list[0]) + '\n' + str(follower_list[1]) + '\n'
+        write_to_file('user/' + userid + '.txt', file_content)
+
+        user_list.extend(follower_list[0])
+        user_list.extend(follower_list[1])
+
+
 
 
 if __name__ == '__main__':
-    my_goddess_id = 'renfish'
     login_zhihu("mail@163.com", '1234')
-    ll = get_a_user_all_followers('hackersun')
+    #followerlist = get_a_user_all_followers('hackersun')
     #ll = get_a_user_all_followees('hackersun')
-    print len(ll)
-    print ll
-
+    #print get_a_user_all_followees_and_followers("hackersun")
+    get_all_user_followees_and_followers('hackersun')
 
