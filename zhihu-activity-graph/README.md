@@ -46,7 +46,8 @@ zhihu activity graph project
 <br />
 <br />
 <a href='http://www.baidu.com'>点击到百度</a>
-<a href='hackersun'>hackersun</a>
+<br />
+<a href='zhihu_user.py'>zhihu_user.py</a>
 <br />
 <br />
 只是显示图片<br />
