@@ -22,7 +22,6 @@ this is a markdown test
 <br />
 <br />
 <code>
-#this is code
 import sys
 import time
 
