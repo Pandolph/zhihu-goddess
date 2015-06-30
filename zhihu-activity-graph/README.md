@@ -45,7 +45,8 @@ zhihu activity graph project
 - test
 <br />
 <br />
-<a href='www.baidu.com'>点击到百度</a>
+<a href='http://www.baidu.com'>点击到百度</a>
+<a href='hackersun'>hackersun</a>
 <br />
 <br />
 只是显示图片<br />
