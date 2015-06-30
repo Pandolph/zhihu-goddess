@@ -45,7 +45,7 @@ zhihu activity graph project
 - test
 <br />
 <br />
-[点击到百度](www.baidu.com)
+[![点击到百度]](www.baidu.com)
 <br />
 <br />
 只是显示图片<br />
