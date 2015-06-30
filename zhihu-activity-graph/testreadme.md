@@ -24,9 +24,10 @@ this is a markdown test
 <code>
     import sys
     import time
-
+    
     def print_hello():
         print 'hello world'
+    
 </code>
 <br />
 > test
