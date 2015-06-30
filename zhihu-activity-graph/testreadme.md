@@ -22,13 +22,13 @@ this is a markdown test
 <br />
 <br />
 <code>
-import sys
-import time
+    import sys
+    import time
 
-def print_hello():
-    print 'hello world'
-    
+    def print_hello():
+        print 'hello world'
 </code>
+<br />
 > test
 > test
 >> test
